@@ -3,30 +3,32 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches:
-      - main   # Runs only when you push to main
+      - main   # Trigger only on pushes to main branch
 
 permissions:
   contents: read
   pages: write
-  id-token: write   # ✅ required for deploy
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4   # latest
+        uses: actions/checkout@v4
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4   # latest
+        uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2   # ✅ correct version
+      - name: Upload site files
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: .   # Upload everything (index.html is in root)
+          path: .   # Uploads everything in repo (index.html must exist in root)
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2   # ✅ correct version
-
+        uses: actions/deploy-pages@v4
