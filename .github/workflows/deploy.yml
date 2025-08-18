@@ -3,23 +3,14 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches:
-<<<<<<< HEAD
       - main   # Runs only when you push to main
-=======
-      - main
->>>>>>> 57d5b8d (Added GitHub Actions workflow for deployment)
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-<<<<<<< HEAD
 
     steps:
       - name: Checkout repository
-=======
-    steps:
-      - name: Checkout code
->>>>>>> 57d5b8d (Added GitHub Actions workflow for deployment)
         uses: actions/checkout@v3
 
       - name: Setup Pages
@@ -28,16 +19,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-<<<<<<< HEAD
           path: .   # Upload everything (index.html is in root)
-=======
-          path: .
->>>>>>> 57d5b8d (Added GitHub Actions workflow for deployment)
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-<<<<<<< HEAD
-=======
-
->>>>>>> 57d5b8d (Added GitHub Actions workflow for deployment)
